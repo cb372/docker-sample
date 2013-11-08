@@ -16,9 +16,9 @@ RUN rm /tmp/jdk-7u45-linux-x64.rpm
 # Tomcat 7
 #
 # Not available on yum, so install manually
-RUN wget -O /tmp/apache-tomcat-4.0.47.tar.gz http://ftp.meisei-u.ac.jp/mirror/apache/dist/tomcat/tomcat-7/v7.0.47/bin/apache-tomcat-7.0.47.tar.gz
-RUN cd /usr/local && tar xzf /tmp/apache-tomcat-4.0.47.tar.gz
-RUN ln -s /usr/local/apache-tomcat-4.0.47 /usr/local/tomcat
+RUN wget -O /tmp/apache-tomcat-7.0.47.tar.gz http://ftp.meisei-u.ac.jp/mirror/apache/dist/tomcat/tomcat-7/v7.0.47/bin/apache-tomcat-7.0.47.tar.gz
+RUN cd /usr/local && tar xzf /tmp/apache-tomcat-7.0.47.tar.gz
+RUN ln -s /usr/local/apache-tomcat-7.0.47 /usr/local/tomcat
 RUN rm /tmp/apache-tomcat-7.0.47.tar.gz
 
 # Other stuff can be installed with yum
@@ -37,7 +37,7 @@ ADD ./apache-conf /etc/httpd/conf.d
 
 # Copy start script
 ADD ./start-script /usr/local
-CMD chmod a+x /usr/local/start-everything.sh
+RUN chmod a+x /usr/local/start-everything.sh
 
 # Set the start script as the default command (this will be overriden if a command is passed to Docker on the commandline).
 # Note that we tail Tomcat's log in order to keep the process running
