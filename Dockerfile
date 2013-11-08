@@ -21,27 +21,10 @@ RUN cd /usr/local && tar xzf /tmp/apache-tomcat-4.0.47.tar.gz
 RUN ln -s /usr/local/src/apache-tomcat-4.0.47 /usr/local/tomcat
 RUN rm /tmp/apache-tomcat-4.0.47.tar.gz
 
-# Postgresql
-# Only 8.4 is available on yum, so install Postgres-provided rpm first
-RUN wget -O /tmp/pgdg-centos93-9.3-1.noarch.rpm http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-centos93-9.3-1.noarch.rpm
-RUN rpm -i /tmp/pgdg-centos93-9.3-1.noarch.rpm
-RUN rm /tmp/pgdg-centos93-9.3-1.noarch.rpm
-
-# Prepare system for Postgresql
-RUN echo NETWORKING=yes > /etc/sysconfig/network
-RUN chmod a+w /tmp
-RUN yum -y install sudo
-
-# Create DB user, database
-RUN /sbin/service postgresql-9.3 initdb
-RUN /sbin/service postgresql-9.3 start
-RUN sudo -u postgres createuser -S -r -d myapp
-RUN sudo -u postgres createdb -O myapp myapp
-
 # Other stuff can be installed with yum
 # (Note that git is quite old. If you want 1.8.x, install from source.)
 RUN yum -y update
-RUN yum -y install httpd git postgresql93-server
+RUN yum -y install httpd git
 
 # Download Maven
 RUN wget -O /tmp/apache-maven-3.1.1-bin.tar.gz http://ftp.jaist.ac.jp/pub/apache/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz
