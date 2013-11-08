@@ -57,5 +57,5 @@ ENV APP_HOME /usr/local/ninja-sample
 RUN cd /usr/local/ninja-sample && /usr/local/maven/bin/mvn -Dmaven.test.skip=true package
 
 # Forward HTTP ports
-EXPOSE 80:80 443:443
+EXPOSE 80:80 443:443 8080:8080
 
