@@ -38,7 +38,7 @@ This will take a few minutes.
 
 5. Run the image's default command, which should start everything up.
 
-    docker run my-app
+    docker run -p="80:80" my-app
 
 6. Once everything has started up, you should be able to access the webapp via [http://localhost/](http://localhost/) on your host machine.
 
