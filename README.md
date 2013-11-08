@@ -2,12 +2,18 @@ An example Dockerfile for a Java webapp + a few dependencies:
 
  * JDK 7
  * Apache 2
- * PostgreSQL 9.3
  * git 1.7
  * Maven 3.1.1
 
+Prerequisites
+-----
+
+I assume you have installed Docker and it is running.
+
+See the [Docker website](http://www.docker.io/gettingstarted/#h_installation) for installation instructions.
+
 Build
-=====
+-----
 
 Steps to build a Docker image:
 
@@ -19,9 +25,9 @@ Steps to build a Docker image:
 
 3. Copy the JDK rpm to the appropriate folder
 
-   cd docker-sample
-   mkdir jdk
-   cp ~/Downloads/jdk-7u45-linux-x64.rpm jdk
+    cd docker-sample
+    mkdir jdk
+    cp ~/Downloads/jdk-7u45-linux-x64.rpm jdk
 
 4. Build the image
 
@@ -37,3 +43,7 @@ This will take a few minutes.
 6. Once everything has started up, you should be able to access the webapp via [http://localhost/](http://localhost/) on your host machine.
 
     open http://localhost/
+
+You can also login to the image and have a look around:
+
+    docker run -i -t my-app /bin/bash
