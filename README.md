@@ -1,7 +1,7 @@
 An example Dockerfile for a Java webapp + a few dependencies:
 
- * JDK 7
- * Apache 2
+ * JDK 8
+ * Nginx
  * git 1.7
  * Maven 3.1.1
 
@@ -21,13 +21,13 @@ Steps to build a Docker image:
 
         git clone https://github.com/cb372/docker-sample.git
 
-2. Manually download JDK 7u45 (x64 rpm) from the Oracle site
+2. Manually download JDK 8u20 (x64 rpm) from the Oracle site
 
 3. Copy the JDK rpm to the appropriate folder
 
         cd docker-sample
         mkdir jdk
-        cp ~/Downloads/jdk-7u45-linux-x64.rpm jdk
+        cp ~/Downloads/jdk-8u20-linux-x64.rpm jdk
 
 4. Build the image
 
@@ -36,13 +36,13 @@ Steps to build a Docker image:
 
     This will take a few minutes.
 
-5. Run the image's default command, which should start everything up.
+5. Run the image's default command, which should start everything up. The `-p` option forwards the container's port 80 to port 8000 on the host. (Note that the host will actually be a guest if you are using boot2docker, so you may need to re-forward the port in VirtualBox.)
 
-        docker run -p="80:80" my-app
+        docker run -p="8000:80" my-app
 
-6. Once everything has started up, you should be able to access the webapp via [http://localhost/](http://localhost/) on your host machine.
+6. Once everything has started up, you should be able to access the webapp via [http://localhost:8000/](http://localhost:8000/) on your host machine.
 
-        open http://localhost/
+        open http://localhost:8000/
 
 You can also login to the image and have a look around:
 

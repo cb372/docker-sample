@@ -14,6 +14,6 @@ cp target/ninja-sample-1.0-SNAPSHOT.war $CATALINA_HOME/webapps/ROOT.war
 # Start Tomcat
 $CATALINA_HOME/bin/startup.sh
 
-# Start Apache
-/sbin/service httpd start
+# Start nginx
+nginx
 
